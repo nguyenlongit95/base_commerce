@@ -36,7 +36,7 @@ Route::get('logout', [\App\Http\Controllers\FrontEnd\LoginController::class, 'lo
 Route::get('forgot-password', [\App\Http\Controllers\FrontEnd\LoginController::class, 'forgotPassword']);
 Route::post('forgot-password', [\App\Http\Controllers\FrontEnd\LoginController::class, 'forgotPassword']);
 
-Route::group(['middleware' => 'checkUserLogin', 'namespace' => 'FrontEnd'], function () {
+Route::group(['middleware' => 'checkUserLogin'], function () {
     // Route front end has required login
 });
 

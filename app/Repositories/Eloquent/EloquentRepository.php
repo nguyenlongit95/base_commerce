@@ -30,6 +30,16 @@ abstract class EloquentRepository implements RepositoryInterface
     }
 
     /**
+     * Function list all record no using condition
+     *
+     * @return mixed
+     */
+    public function listAll()
+    {
+        return $this->_model->get();
+    }
+
+    /**
      * Function get all record and order by id using param $orderBy
      *
      * @param int $paginate

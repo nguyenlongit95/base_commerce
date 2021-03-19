@@ -3,6 +3,9 @@ namespace App\Repositories\Eloquent;
 
 interface RepositoryInterface
 {
+    // list all record no using condition
+    public function listAll();
+
     // param orderBy: asc or desc string
     public function getAll($paginate, $orderBy);
 
