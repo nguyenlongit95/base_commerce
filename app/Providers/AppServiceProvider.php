@@ -2,6 +2,23 @@
 
 namespace App\Providers;
 
+use App\Repositories\Cart\CartEloquentRepository;
+use App\Repositories\Cart\CartRepositoryInterface;
+use App\Repositories\CartDetail\CartDetailEloquentRepository;
+use App\Repositories\CartDetail\CartDetailRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Product\ProductRepositoryInterface;
+use App\Repositories\ProductAttitude\ProductAttitudeEloquentRepository;
+use App\Repositories\ProductAttitude\ProductAttitudeRepositoryInterface;
+use App\Repositories\ProductImg\ProductImgRepositoryInterface;
+use App\Repositories\ProductTags\ProductTagsEloquentRepository;
+use App\Repositories\ProductTags\ProductTagsRepositoryInterface;
+use App\Repositories\Ratting\RattingEloquentRepository;
+use App\Repositories\Ratting\RattingRepositoryInterface;
+use App\Repositories\Tags\TagsEloquentRepository;
+use App\Repositories\Tags\TagsRepositoryInterface;
+use App\Repositories\Wishlist\WishListEloquentRepository;
+use App\Repositories\Wishlist\WishListRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +45,46 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             \App\Repositories\Menus\MenusRepositoryInterface::class,
             \App\Repositories\Menus\MenusEloquentRepository::class
+        );
+        $this->app->bind(
+            CategoryRepositoryInterface::class,
+            CategoryRepositoryInterface::class
+        );
+        $this->app->bind(
+            ProductRepositoryInterface::class,
+            ProductRepositoryInterface::class
+        );
+        $this->app->bind(
+            ProductImgRepositoryInterface::class,
+            ProductImgRepositoryInterface::class
+        );
+        $this->app->bind(
+            ProductAttitudeRepositoryInterface::class,
+            ProductAttitudeEloquentRepository::class
+        );
+        $this->app->bind(
+            TagsRepositoryInterface::class,
+            TagsEloquentRepository::class
+        );
+        $this->app->bind(
+            ProductTagsRepositoryInterface::class,
+            ProductTagsEloquentRepository::class
+        );
+        $this->app->bind(
+            WishListRepositoryInterface::class,
+            WishListEloquentRepository::class
+        );
+        $this->app->bind(
+            RattingRepositoryInterface::class,
+            RattingEloquentRepository::class
+        );
+        $this->app->bind(
+            CartRepositoryInterface::class,
+            CartEloquentRepository::class
+        );
+        $this->app->bind(
+            CartDetailRepositoryInterface::class,
+            CartDetailEloquentRepository::class
         );
     }
 

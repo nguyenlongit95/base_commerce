@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>BaseApp | Admin log in</title>
+        <title>Base E-Commerce | Admin log in</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -39,7 +39,7 @@
     <body class="login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/admin/login') }}"><b>BaseApp</b></a>
+            <a href="{{ url('/admin/login') }}"><b>Base E-Commerce</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -58,7 +58,6 @@
                         <li class="text-danger"> {{ session('status') }}</li>
                     </ul>
                 @endif
-
                 <form action="{{ url('/admin/login') }}" method="post" enctype="multipart/form-data" id="login-form">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="input-group mb-3">

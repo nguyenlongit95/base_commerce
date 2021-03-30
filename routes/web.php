@@ -90,4 +90,9 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function 
     Route::group(['prefix' => 'Paypal'], function () {
         Route::get('direct-payment', [DashBoardController::class, 'paypalDirectPayment']);
     });
+
+    /**
+     * Admin router for e-commerce
+     */
+
 });
