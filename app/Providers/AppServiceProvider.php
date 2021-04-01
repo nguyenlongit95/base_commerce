@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Factory\Paygates\NganLuong\NL_Checkout;
 use App\Repositories\Cart\CartEloquentRepository;
 use App\Repositories\Cart\CartRepositoryInterface;
 use App\Repositories\CartDetail\CartDetailEloquentRepository;
@@ -85,6 +86,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             CartDetailRepositoryInterface::class,
             CartDetailEloquentRepository::class
+        );
+
+        $this->app->bind(
+            NL_Checkout::class
         );
     }
 

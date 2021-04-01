@@ -40,6 +40,28 @@ Route::group(['middleware' => 'checkUserLogin'], function () {
     // Route front end has required login
 });
 
+Route::group(['prefix' => 'paypal'], function () {
+    Route::get('init-payment', [\App\Http\Controllers\FrontEnd\PaymentController::class, 'payPalInitPayment']);
+});
+
+Route::group(['prefix' => 'ngan-luong'], function () {
+    Route::post('ngan-luong-init-payment', [\App\Http\Controllers\FrontEnd\PaymentController::class, 'nganLuongInitPayment']);
+    Route::get('success', [\App\Http\Controllers\FrontEnd\PaymentController::class, 'nganLuongSuccessPayment']);
+    Route::get('cancel', [\App\Http\Controllers\FrontEnd\PaymentController::class, 'nganLuongCancelPayment']);
+    Route::get('failed', [\App\Http\Controllers\FrontEnd\PaymentController::class, 'nganLuongFailedPayment']);
+});
+
+Route::group(['prefix' => 'vn-pay'], function () {
+    Route::post('vn-pay-init-payment', [\App\Http\Controllers\FrontEnd\PaymentController::class, 'vnPayInitPayment']);
+    Route::get('return', [\App\Http\Controllers\FrontEnd\PaymentController::class, 'vnPayReturn']);
+});
+
+Route::group(['prefix' => 'momo'], function () {
+    Route::post('momo-init-payment', [\App\Http\Controllers\FrontEnd\PaymentController::class, 'momoInitPayment']);
+    Route::get('result', [\App\Http\Controllers\FrontEnd\PaymentController::class, 'momoResult']);
+    Route::get('ipn', [\App\Http\Controllers\FrontEnd\PaymentController::class, 'momoIPN']);
+});
+
 /**
  * Route admin panel
  * Middelware
@@ -78,21 +100,7 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function 
         Route::get('add', [MenuController::class, 'add']);
     });
 
-    Route::group(['prefix' => 'ngan-luong'], function () {
-        Route::get('direct-payment', [DashBoardController::class, 'doDirectPayment']);
-        Route::any('success', [DashBoardController::class, 'success']);
-    });
-
-    Route::group(['prefix' => 'VNPAY'], function () {
-        Route::get('direct-payment', [DashBoardController::class, 'doDirectPayment']);
-    });
-
-    Route::group(['prefix' => 'Paypal'], function () {
-        Route::get('direct-payment', [DashBoardController::class, 'paypalDirectPayment']);
-    });
-
     /**
      * Admin router for e-commerce
      */
-
 });
