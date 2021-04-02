@@ -103,4 +103,7 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function 
     /**
      * Admin router for e-commerce
      */
+    Route::group(['prefix' => 'qr-code'], function () {
+        Route::get('default-qr-code', [\App\Http\Controllers\Admin\ProductController::class, 'defaultQRCode']);
+    });
 });
