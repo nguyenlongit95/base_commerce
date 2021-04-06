@@ -74,4 +74,24 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\Wishlist', 'product_id', 'id');
     }
+
+    /**
+     * Collect 1-n to color table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function color()
+    {
+        return $this->hasMany('App\Models\ProductColor', 'product_id', 'id');
+    }
+
+    /**
+     * Collect 1-n to size table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function size()
+    {
+        return $this->hasMany('App\Models\ProductSize', 'product_id', 'id');
+    }
 }

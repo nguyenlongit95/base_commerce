@@ -96,6 +96,11 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('/dist/js/demo.js') }}"></script>
 
+<!-- Import master js -->
+<script src="{{ asset('/js/master.js') }}"></script>
+
+<script src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
+
 @yield('custom-js')
 
 </body>

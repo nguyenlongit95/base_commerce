@@ -26,27 +26,45 @@
                 <a href="#" class="nav-link">
                     <i class="fas fa-icons"></i>
                     <p>
-                        Elements
+                        System Elements
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="./index.html" class="nav-link">
+                        <a href="{{ url('/admin/category/') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Elements No.1</p>
+                            <p>Categories</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="./index2.html" class="nav-link">
+                        <a href="{{ url('/admin/product/') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Elements No.1</p>
+                            <p>Products</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/tags/') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Tags</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/order') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Order - Order detail</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/wish-list/') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Wish List</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="./index3.html" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Elements No.1</p>
+                            <p>Ratting</p>
                         </a>
                     </li>
                 </ul>

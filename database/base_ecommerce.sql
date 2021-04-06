@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th4 01, 2021 lúc 09:18 AM
+-- Thời gian đã tạo: Th4 06, 2021 lúc 10:40 AM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.1
 
@@ -76,7 +76,16 @@ CREATE TABLE IF NOT EXISTS `category` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `slug` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `description`, `sort`, `created_at`, `updated_at`, `slug`) VALUES
+(2, 'PC', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper, neque at tincidunt auctor, ex tortor ultricies sapien, eu ultricies elit ante sit amet sapien. Ut maximus volutpat leo non eleifend. Nulla facilisi. Duis ac porta lacus, volutpat posuere nulla. Vivamus ac blandit erat. Cras quis neque nisl. Fusce accumsan convallis ligula, et finibus ipsum aliquet sed. Mauris eget ante turpis. Donec vel lectus vulputate leo feugiat faucibus. Nunc ultricies turpis id ipsum maximus mattis. Donec suscipit aliquet interdum. Integer ullamcorper, ex sed sodales consequat, arcu leo dapibus sem, sit amet accumsan tellus odio ac nisi. Praesent ut malesuada sapien, quis egestas magna. Integer laoreet consequat mauris in condimentum.</p>', 1, '2021-04-04 21:11:11', '2021-04-04 21:16:11', 'pc'),
+(3, 'Mobile', '<p>Nullam ac volutpat nisl. Nunc id scelerisque risus. Nullam pellentesque mattis erat, sit amet vestibulum ipsum facilisis quis. Praesent lacinia sollicitudin leo. Nullam lectus enim, suscipit vitae laoreet vel, accumsan in enim. Curabitur ullamcorper elit leo, in luctus felis congue vitae. Etiam tincidunt risus vel diam euismod, ac interdum diam mattis.</p>', 2, '2021-04-04 21:15:11', '2021-04-04 21:18:17', 'mobile'),
+(4, 'Electric', '<p>Proin vitae mi tempus, consectetur ligula id, eleifend diam. Praesent tellus est, pulvinar eget posuere nec, porttitor venenatis lectus. Cras sed felis id sem elementum ornare sit amet in mauris. Mauris congue dolor nisl, vitae pellentesque libero viverra ut. In hac habitasse platea dictumst. Nulla scelerisque magna turpis, sit amet tincidunt libero&nbsp;</p>', 3, '2021-04-04 21:15:35', '2021-04-04 21:18:22', 'electric');
 
 -- --------------------------------------------------------
 
@@ -145,7 +154,14 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `slug`, `category_id`, `info`, `description`, `price`, `origin`, `code`, `qa_code`, `status`, `qty`, `created_at`, `updated_at`) VALUES
+(1, 'Vsmart live 4', 'vsmart-live-4', 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper, neque at tincidunt auctor, ex tortor ultricies sapien, eu ultricies elit ante sit amet sapien. Ut maximus volutpat leo non eleifend. Nulla facilisi. Duis ac porta lacus, volutpat posuere nulla. Vivamus ac blandit erat. Cras quis neque nisl.&nbsp;</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper, neque at tincidunt auctor, ex tortor ultricies sapien, eu ultricies elit ante sit amet sapien. Ut maximus volutpat leo non eleifend. Nulla facilisi. Duis ac porta lacus, volutpat posuere nulla. Vivamus ac blandit erat. Cras quis neque nisl. Fusce accumsan convallis ligula, et finibus ipsum aliquet sed. Mauris eget ante turpis. Donec vel lectus vulputate leo feugiat faucibus. Nunc ultricies turpis id ipsum maximus mattis. Donec suscipit aliquet interdum. Integer ullamcorper, ex sed sodales consequat, arcu leo dapibus sem, sit amet accumsan tellus odio ac nisi. Praesent ut malesuada sapien, quis egestas magna. Integer laoreet consequat mauris in condimentum.</p>\r\n\r\n<p>Nullam ac volutpat nisl. Nunc id scelerisque risus. Nullam pellentesque mattis erat, sit amet vestibulum ipsum facilisis quis. Praesent lacinia sollicitudin leo. Nullam lectus enim, suscipit vitae laoreet vel, accumsan in enim. Curabitur ullamcorper elit leo, in luctus felis congue vitae. Etiam tincidunt risus vel diam euismod, ac interdum diam mattis.</p>\r\n\r\n<p>Proin vitae mi tempus, consectetur ligula id, eleifend diam. Praesent tellus est, pulvinar eget posuere nec, porttitor venenatis lectus. Cras sed felis id sem elementum ornare sit amet in mauris. Mauris congue dolor nisl, vitae pellentesque libero viverra ut. In hac habitasse platea dictumst. Nulla scelerisque magna turpis, sit amet tincidunt libero malesuada sit amet. Nam vitae sem eros. Praesent at consectetur diam, id porta erat. Donec erat metus, laoreet sed dignissim a, vehicula id velit.</p>', 4500000, 'VietNam', '3c07af49174f9420a6393b35a66b7bfa', NULL, 1, 1500, '2021-04-05 01:37:58', '2021-04-05 01:37:58');
 
 -- --------------------------------------------------------
 
@@ -157,13 +173,47 @@ DROP TABLE IF EXISTS `product_attitude`;
 CREATE TABLE IF NOT EXISTS `product_attitude` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
-  `attitude` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `attribute` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `value` text COLLATE utf8_unicode_ci NOT NULL,
   `sort` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `product_attitude`
+--
+
+INSERT INTO `product_attitude` (`id`, `product_id`, `attribute`, `value`, `sort`, `created_at`, `updated_at`) VALUES
+(3, 1, 'Pin', '5000mAh', 1, '2021-04-06 00:33:52', '2021-04-06 00:33:52'),
+(4, 1, 'Screen', '6.5inch', 2, '2021-04-06 00:34:04', '2021-04-06 00:34:04'),
+(5, 1, 'IOS', 'Android 10', 3, '2021-04-06 00:34:16', '2021-04-06 00:34:16');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product_color`
+--
+
+DROP TABLE IF EXISTS `product_color`;
+CREATE TABLE IF NOT EXISTS `product_color` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `color` text COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `product_color`
+--
+
+INSERT INTO `product_color` (`id`, `product_id`, `color`, `created_at`, `updated_at`) VALUES
+(1, 1, '#000000', NULL, NULL),
+(2, 1, '#d03711', NULL, NULL),
+(5, 1, '#4c55cd', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -180,7 +230,42 @@ CREATE TABLE IF NOT EXISTS `product_img` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `product_img`
+--
+
+INSERT INTO `product_img` (`id`, `product_id`, `image`, `sort`, `created_at`, `updated_at`) VALUES
+(3, 2, '/image/products/image_2_105990876_594213958163917_1201112106328640992_n.jpg', 0, '2021-04-05 03:52:26', '2021-04-05 03:52:26'),
+(4, 1, '/image/products/image_1_105990876_594213958163917_1201112106328640992_n.jpg', 0, '2021-04-06 00:29:50', '2021-04-06 00:29:50'),
+(5, 1, '/image/products/image_1_ava.jpg', 0, '2021-04-06 00:29:55', '2021-04-06 00:29:55'),
+(6, 1, '/image/products/image_1_avaHostingerAndMail.jpg', 0, '2021-04-06 00:30:00', '2021-04-06 00:30:00');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product_size`
+--
+
+DROP TABLE IF EXISTS `product_size`;
+CREATE TABLE IF NOT EXISTS `product_size` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `size` text COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `product_size`
+--
+
+INSERT INTO `product_size` (`id`, `product_id`, `size`, `created_at`, `updated_at`) VALUES
+(1, 1, 'S', NULL, NULL),
+(2, 1, 'X', NULL, NULL),
+(4, 1, 'XL', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -196,7 +281,15 @@ CREATE TABLE IF NOT EXISTS `product_tags` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `product_tags`
+--
+
+INSERT INTO `product_tags` (`id`, `product_id`, `tags_id`, `created_at`, `updated_at`) VALUES
+(12, 1, 3, '2021-04-06 07:33:40', NULL),
+(11, 1, 1, '2021-04-06 07:33:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -213,7 +306,15 @@ CREATE TABLE IF NOT EXISTS `rattings` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `rattings`
+--
+
+INSERT INTO `rattings` (`id`, `user_id`, `product_id`, `rattings`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 4, '2021-04-06 09:30:11', NULL),
+(2, 1, 1, 5, '2021-04-06 09:30:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -295,7 +396,15 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tags`
+--
+
+INSERT INTO `tags` (`id`, `tags`, `slug`, `sort`, `created_at`, `updated_at`) VALUES
+(1, 'Hot phone 2019', 'hot-phone-2019', 1, '2021-04-04 23:42:16', '2021-04-04 23:42:16'),
+(3, 'PC gaming 2021', 'pc-gaming-2021', 2, '2021-04-04 23:56:03', '2021-04-04 23:56:03');
 
 -- --------------------------------------------------------
 

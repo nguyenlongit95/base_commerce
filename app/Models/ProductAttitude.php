@@ -13,7 +13,7 @@ class ProductAttitude extends Model
 
     protected $fillable = [
         'product_id',
-        'attitude',
+        'attribute',
         'value',
         'sort',
     ];

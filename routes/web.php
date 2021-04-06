@@ -106,4 +106,43 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function 
     Route::group(['prefix' => 'qr-code'], function () {
         Route::get('default-qr-code', [\App\Http\Controllers\Admin\ProductController::class, 'defaultQRCode']);
     });
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\CategoryController::class, 'index']);
+        Route::get('/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create']);
+        Route::post('/add', [\App\Http\Controllers\Admin\CategoryController::class, 'store']);
+        Route::get('{id}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit']);
+        Route::post('{id}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'update']);
+        Route::get('{id}/delete', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'tags'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\TagsController::class, 'index']);
+        Route::get('/create', [\App\Http\Controllers\Admin\TagsController::class, 'create']);
+        Route::post('/add', [\App\Http\Controllers\Admin\TagsController::class, 'store']);
+        Route::get('{id}/edit', [\App\Http\Controllers\Admin\TagsController::class, 'edit']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\TagsController::class, 'update']);
+        Route::get('{id}/delete', [\App\Http\Controllers\Admin\TagsController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ProductController::class, 'index']);
+        Route::get('/create', [\App\Http\Controllers\Admin\ProductController::class, 'create']);
+        Route::post('/add', [\App\Http\Controllers\Admin\ProductController::class, 'store']);
+        Route::get('{id}/edit', [\App\Http\Controllers\Admin\ProductController::class, 'edit']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\ProductController::class, 'update']);
+        Route::post('image/{id}/add', [\App\Http\Controllers\Admin\ProductController::class, 'addImage']);
+        Route::get('image/{id}/delete', [\App\Http\Controllers\Admin\ProductController::class, 'removeImage']);
+        Route::post('/attribute/{id}/add', [\App\Http\Controllers\Admin\ProductController::class, 'addAttribute']);
+        Route::get('/attribute/{id}/delete', [\App\Http\Controllers\Admin\ProductController::class, 'removeAttribute']);
+        Route::get('/data-dependent', [\App\Http\Controllers\Admin\ProductController::class, 'checkDataDependent']);
+        Route::get('/delete', [\App\Http\Controllers\Admin\ProductController::class, 'destroy']);
+        Route::get('{id}/show', [\App\Http\Controllers\Admin\ProductController::class, 'show']);
+        Route::get('/search', [\App\Http\Controllers\Admin\ProductController::class, 'search']);
+        Route::get('render-qr-code', [\App\Http\Controllers\Admin\ProductController::class, 'renderQACode']);
+        Route::post('/color/{id}/add', [\App\Http\Controllers\Admin\ProductController::class, 'addColor']);
+        Route::get('/color/{id}/delete', [\App\Http\Controllers\Admin\ProductController::class, 'deleteColor']);
+        Route::post('/size/{id}/add', [\App\Http\Controllers\Admin\ProductController::class, 'addSize']);
+        Route::get('/size/{id}/delete', [\App\Http\Controllers\Admin\ProductController::class, 'deleteSize']);
+    });
 });

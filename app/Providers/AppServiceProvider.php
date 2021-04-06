@@ -7,10 +7,13 @@ use App\Repositories\Cart\CartEloquentRepository;
 use App\Repositories\Cart\CartRepositoryInterface;
 use App\Repositories\CartDetail\CartDetailEloquentRepository;
 use App\Repositories\CartDetail\CartDetailRepositoryInterface;
+use App\Repositories\Category\CategoryEloquentRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Product\ProductEloquentRepository;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Repositories\ProductAttitude\ProductAttitudeEloquentRepository;
 use App\Repositories\ProductAttitude\ProductAttitudeRepositoryInterface;
+use App\Repositories\ProductImg\ProductImgEloquentRepository;
 use App\Repositories\ProductImg\ProductImgRepositoryInterface;
 use App\Repositories\ProductTags\ProductTagsEloquentRepository;
 use App\Repositories\ProductTags\ProductTagsRepositoryInterface;
@@ -49,15 +52,15 @@ class AppServiceProvider extends ServiceProvider
         );
         $this->app->bind(
             CategoryRepositoryInterface::class,
-            CategoryRepositoryInterface::class
+            CategoryEloquentRepository::class
         );
         $this->app->bind(
             ProductRepositoryInterface::class,
-            ProductRepositoryInterface::class
+            ProductEloquentRepository::class
         );
         $this->app->bind(
             ProductImgRepositoryInterface::class,
-            ProductImgRepositoryInterface::class
+            ProductImgEloquentRepository::class
         );
         $this->app->bind(
             ProductAttitudeRepositoryInterface::class,
