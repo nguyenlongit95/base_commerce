@@ -39,7 +39,7 @@
                         @if(!empty($product->productImg))
                             <?php $j = 0; ?>
                             @foreach($product->productImg as $image)
-                            <div @if($j == 0) class="product-image-thumb active" @else class="product-image-thumb" @endif><img src="{{ asset($image->image) }}" alt="{{ $product->name }}"></div>
+                                <div @if($j == 0) class="product-image-thumb active" @else class="product-image-thumb" @endif><img src="{{ asset($image->image) }}" alt="{{ $product->name }}"></div>
                                 <?php $j++; ?>
                             @endforeach
                         @endif

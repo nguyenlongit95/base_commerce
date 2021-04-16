@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th4 06, 2021 lúc 10:40 AM
+-- Thời gian đã tạo: Th4 16, 2021 lúc 08:11 AM
 -- Phiên bản máy phục vụ: 5.7.24
 -- Phiên bản PHP: 7.3.1
 
@@ -36,11 +36,20 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `user_id` int(11) NOT NULL,
   `amount` float NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0' COMMENT '0 Nháp 1 chưa thanh toán 2 đã thanh toán',
+  `state` int(11) DEFAULT '1' COMMENT '1: Đơn hàng đang xử lý 2: đơn hàng đã huỷ',
   `address` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'Địa chỉ giao hàng',
+  `delivery_date` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`id`, `code`, `qa_code`, `user_id`, `amount`, `status`, `state`, `address`, `delivery_date`, `created_at`, `updated_at`) VALUES
+(1, 'AAAABBBBSDJWDBUIASHDLBSB2132432', 'qrcode.png', 2, 56000, 1, 1, 'Ha Noi sad', NULL, '2021-04-14 02:44:54', '2021-04-13 21:33:37');
 
 -- --------------------------------------------------------
 
@@ -58,7 +67,21 @@ CREATE TABLE IF NOT EXISTS `cart_detail` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart_detail`
+--
+
+INSERT INTO `cart_detail` (`id`, `product_id`, `cart_id`, `qty`, `price`, `created_at`, `updated_at`) VALUES
+(2, 2, 1, 12, 1000, '2021-04-14 06:56:28', NULL),
+(3, 1, 1, 12, 1200, '2021-04-14 06:56:33', NULL),
+(4, 2, 1, 12, 1000, '2021-04-14 06:56:33', NULL),
+(5, 1, 1, 11, 1200, '2021-04-14 06:56:44', NULL),
+(6, 2, 1, 11, 1000, '2021-04-14 06:56:44', NULL),
+(7, 1, 1, 11, 1200, '2021-04-14 06:56:54', NULL),
+(8, 1, 1, 11, 1000, '2021-04-14 06:56:54', NULL),
+(9, 1, 1, 1, 150, '2021-04-14 06:57:04', NULL);
 
 -- --------------------------------------------------------
 
@@ -154,14 +177,15 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `slug`, `category_id`, `info`, `description`, `price`, `origin`, `code`, `qa_code`, `status`, `qty`, `created_at`, `updated_at`) VALUES
-(1, 'Vsmart live 4', 'vsmart-live-4', 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper, neque at tincidunt auctor, ex tortor ultricies sapien, eu ultricies elit ante sit amet sapien. Ut maximus volutpat leo non eleifend. Nulla facilisi. Duis ac porta lacus, volutpat posuere nulla. Vivamus ac blandit erat. Cras quis neque nisl.&nbsp;</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper, neque at tincidunt auctor, ex tortor ultricies sapien, eu ultricies elit ante sit amet sapien. Ut maximus volutpat leo non eleifend. Nulla facilisi. Duis ac porta lacus, volutpat posuere nulla. Vivamus ac blandit erat. Cras quis neque nisl. Fusce accumsan convallis ligula, et finibus ipsum aliquet sed. Mauris eget ante turpis. Donec vel lectus vulputate leo feugiat faucibus. Nunc ultricies turpis id ipsum maximus mattis. Donec suscipit aliquet interdum. Integer ullamcorper, ex sed sodales consequat, arcu leo dapibus sem, sit amet accumsan tellus odio ac nisi. Praesent ut malesuada sapien, quis egestas magna. Integer laoreet consequat mauris in condimentum.</p>\r\n\r\n<p>Nullam ac volutpat nisl. Nunc id scelerisque risus. Nullam pellentesque mattis erat, sit amet vestibulum ipsum facilisis quis. Praesent lacinia sollicitudin leo. Nullam lectus enim, suscipit vitae laoreet vel, accumsan in enim. Curabitur ullamcorper elit leo, in luctus felis congue vitae. Etiam tincidunt risus vel diam euismod, ac interdum diam mattis.</p>\r\n\r\n<p>Proin vitae mi tempus, consectetur ligula id, eleifend diam. Praesent tellus est, pulvinar eget posuere nec, porttitor venenatis lectus. Cras sed felis id sem elementum ornare sit amet in mauris. Mauris congue dolor nisl, vitae pellentesque libero viverra ut. In hac habitasse platea dictumst. Nulla scelerisque magna turpis, sit amet tincidunt libero malesuada sit amet. Nam vitae sem eros. Praesent at consectetur diam, id porta erat. Donec erat metus, laoreet sed dignissim a, vehicula id velit.</p>', 4500000, 'VietNam', '3c07af49174f9420a6393b35a66b7bfa', NULL, 1, 1500, '2021-04-05 01:37:58', '2021-04-05 01:37:58');
+(1, 'Vsmart live 4', 'vsmart-live-4', 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper, neque at tincidunt auctor, ex tortor ultricies sapien, eu ultricies elit ante sit amet sapien. Ut maximus volutpat leo non eleifend. Nulla facilisi. Duis ac porta lacus, volutpat posuere nulla. Vivamus ac blandit erat. Cras quis neque nisl.&nbsp;</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper, neque at tincidunt auctor, ex tortor ultricies sapien, eu ultricies elit ante sit amet sapien. Ut maximus volutpat leo non eleifend. Nulla facilisi. Duis ac porta lacus, volutpat posuere nulla. Vivamus ac blandit erat. Cras quis neque nisl. Fusce accumsan convallis ligula, et finibus ipsum aliquet sed. Mauris eget ante turpis. Donec vel lectus vulputate leo feugiat faucibus. Nunc ultricies turpis id ipsum maximus mattis. Donec suscipit aliquet interdum. Integer ullamcorper, ex sed sodales consequat, arcu leo dapibus sem, sit amet accumsan tellus odio ac nisi. Praesent ut malesuada sapien, quis egestas magna. Integer laoreet consequat mauris in condimentum.</p>\r\n\r\n<p>Nullam ac volutpat nisl. Nunc id scelerisque risus. Nullam pellentesque mattis erat, sit amet vestibulum ipsum facilisis quis. Praesent lacinia sollicitudin leo. Nullam lectus enim, suscipit vitae laoreet vel, accumsan in enim. Curabitur ullamcorper elit leo, in luctus felis congue vitae. Etiam tincidunt risus vel diam euismod, ac interdum diam mattis.</p>\r\n\r\n<p>Proin vitae mi tempus, consectetur ligula id, eleifend diam. Praesent tellus est, pulvinar eget posuere nec, porttitor venenatis lectus. Cras sed felis id sem elementum ornare sit amet in mauris. Mauris congue dolor nisl, vitae pellentesque libero viverra ut. In hac habitasse platea dictumst. Nulla scelerisque magna turpis, sit amet tincidunt libero malesuada sit amet. Nam vitae sem eros. Praesent at consectetur diam, id porta erat. Donec erat metus, laoreet sed dignissim a, vehicula id velit.</p>', 4500000, 'VietNam', '3c07af49174f9420a6393b35a66b7bfa', NULL, 1, 1500, '2021-04-05 01:37:58', '2021-04-05 01:37:58'),
+(3, 'Vsmart live Be', 'vsmart-live-be', 3, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper, neque at tincidunt auctor, ex tortor ultricies sapien, eu ultricies elit ante sit amet sapien. Ut maximus volutpat leo non eleifend. Nulla facilisi. Duis ac porta lacus, volutpat posuere nulla. Vivamus ac blandit erat. Cras quis neque nisl.&nbsp;</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper, neque at tincidunt auctor, ex tortor ultricies sapien, eu ultricies elit ante sit amet sapien. Ut maximus volutpat leo non eleifend. Nulla facilisi. Duis ac porta lacus, volutpat posuere nulla. Vivamus ac blandit erat. Cras quis neque nisl. Fusce accumsan convallis ligula, et finibus ipsum aliquet sed. Mauris eget ante turpis. Donec vel lectus vulputate leo feugiat faucibus. Nunc ultricies turpis id ipsum maximus mattis. Donec suscipit aliquet interdum. Integer ullamcorper, ex sed sodales consequat, arcu leo dapibus sem, sit amet accumsan tellus odio ac nisi. Praesent ut malesuada sapien, quis egestas magna. Integer laoreet consequat mauris in condimentum.</p>\r\n\r\n<p>Nullam ac volutpat nisl. Nunc id scelerisque risus. Nullam pellentesque mattis erat, sit amet vestibulum ipsum facilisis quis. Praesent lacinia sollicitudin leo. Nullam lectus enim, suscipit vitae laoreet vel, accumsan in enim. Curabitur ullamcorper elit leo, in luctus felis congue vitae. Etiam tincidunt risus vel diam euismod, ac interdum diam mattis.</p>\r\n\r\n<p>Proin vitae mi tempus, consectetur ligula id, eleifend diam. Praesent tellus est, pulvinar eget posuere nec, porttitor venenatis lectus. Cras sed felis id sem elementum ornare sit amet in mauris. Mauris congue dolor nisl, vitae pellentesque libero viverra ut. In hac habitasse platea dictumst. Nulla scelerisque magna turpis, sit amet tincidunt libero malesuada sit amet. Nam vitae sem eros. Praesent at consectetur diam, id porta erat. Donec erat metus, laoreet sed dignissim a, vehicula id velit.</p>', 4500000, 'VietNam', '3c07af49174f9420a6393b35a66b7bfa', NULL, 1, 1500, '2021-04-05 01:37:58', '2021-04-05 01:37:58');
 
 -- --------------------------------------------------------
 
@@ -313,8 +337,8 @@ CREATE TABLE IF NOT EXISTS `rattings` (
 --
 
 INSERT INTO `rattings` (`id`, `user_id`, `product_id`, `rattings`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 4, '2021-04-06 09:30:11', NULL),
-(2, 1, 1, 5, '2021-04-06 09:30:11', NULL);
+(1, 2, 1, 4, '2021-04-06 09:30:11', NULL),
+(2, 2, 3, 5, '2021-04-06 09:30:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -445,10 +469,18 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `wishlist`
+--
+
+INSERT INTO `wishlist` (`id`, `product_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, NULL, NULL),
+(2, 3, 2, NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

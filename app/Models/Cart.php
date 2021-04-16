@@ -17,7 +17,9 @@ class Cart extends Model
         'user_id',
         'amount',
         'status',
+        'state',
         'address',
+        'delivery_date',
     ];
 
     /**
@@ -28,5 +30,15 @@ class Cart extends Model
     public function cartDetail()
     {
         return $this->hasMany('App\Models\CartDetail', 'cart_id', 'id');
+    }
+
+    /**
+     * Collect 1-1 to table users
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne('\App\Models\User', 'id', 'user_id');
     }
 }

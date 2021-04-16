@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Cart\CartRepositoryInterface;
 use App\Repositories\Users\UserRepositoryinterface;
 use Illuminate\Http\Request;
 use DB;
@@ -10,11 +11,24 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    protected $userRepository;
+    /**
+     * @var UserRepositoryinterface
+     */
+    private $userRepository;
+    private $cartRepository;
 
-    public function __construct(UserRepositoryinterface $userRepository)
+    /**
+     * UserController constructor.
+     * @param UserRepositoryinterface $userRepository
+     * @param CartRepositoryInterface $cartRepository
+     */
+    public function __construct(
+        UserRepositoryinterface $userRepository,
+        CartRepositoryInterface $cartRepository
+    )
     {
         $this->userRepository = $userRepository;
+        $this->cartRepository = $cartRepository;
     }
 
     /**
@@ -93,5 +107,40 @@ class UserController extends Controller
         }
 
         return redirect('/admin/users/index');
+    }
+
+    /**
+     * Controller function list all customer and relationship
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function listCustomer(Request $request)
+    {
+        $customers = $this->userRepository->listCustomer();
+
+        return view('admin.pages.customer.index', compact('customers'));
+    }
+
+    /**
+     * Controller function show an customer
+     *
+     * @param Request $request
+     * @param integer $id of user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function show(Request $request, $id)
+    {
+        $customer = $this->userRepository->findCustomer($id);
+        $totalProductPurchased = 0;
+        if (!empty($customer->carts)) {
+            foreach ($customer->carts as $cart) {
+                $totalProductPurchased += count($cart->cartDetail);
+                $cart->txt_status = $this->cartRepository->replaceStatus($cart);
+                $cart->txt_state = $this->cartRepository->replaceState($cart);
+            }
+        }
+
+        return view('admin.pages.customer.show', compact('customer', 'totalProductPurchased'));
     }
 }

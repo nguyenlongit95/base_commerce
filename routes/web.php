@@ -145,4 +145,16 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function 
         Route::post('/size/{id}/add', [\App\Http\Controllers\Admin\ProductController::class, 'addSize']);
         Route::get('/size/{id}/delete', [\App\Http\Controllers\Admin\ProductController::class, 'deleteSize']);
     });
+
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\CartController::class, 'index']);
+        Route::get('/{id}/edit', [\App\Http\Controllers\Admin\CartController::class, 'edit']);
+        Route::post('/{id}/update', [\App\Http\Controllers\Admin\CartController::class, 'update']);
+        Route::get('/search', [\App\Http\Controllers\Admin\CartController::class, 'search']);
+    });
+
+    Route::group(['prefix' => 'customer'], function () {
+        Route::get('/', [UserController::class, 'listCustomer']);
+        Route::get('/{id}/show', [UserController::class, 'show']);
+    });
 });

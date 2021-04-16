@@ -50,21 +50,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/admin/order') }}" class="nav-link">
+                        <a href="{{ url('/admin/cart') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Order - Order detail</p>
+                            <p>Cart - Cart detail</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/admin/wish-list/') }}" class="nav-link">
+                        <a href="{{ url('/admin/customer/') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Wish List</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./index3.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Ratting</p>
+                            <p>Customer</p>
                         </a>
                     </li>
                 </ul>
