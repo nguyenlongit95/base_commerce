@@ -81,9 +81,13 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Base E-Commerce
+                    Model E-Commerce
+                </div>
+                <div id="app">
+                    <hello-world></hello-world>
                 </div>
             </div>
         </div>
     </body>
+    <script src="{{ asset('/js/app.js') }}"></script>
 </html>
