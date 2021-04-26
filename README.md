@@ -60,3 +60,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## install node module
+npm install
+
+## install toast notification in vue.js
+npm install vue-toast-notification
+
+## Mint-UI Use mint ui to develop interfaces for mobile apps with special components
+
+## using vuetify
+
