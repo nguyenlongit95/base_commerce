@@ -16,7 +16,7 @@ class Cart extends Model
         'qa_code',
         'user_id',
         'amount',
-        'status',   // 0 draft 1 unCharge 2 charged
+        'status',   // 0 draft 1 unCharge 2 charged 3: deleted
         'state',    // 1: Đơn hàng đang xử lý 2: đơn hàng đã huỷ 0: đơn hàng đã giao
         'address',
         'delivery_date',

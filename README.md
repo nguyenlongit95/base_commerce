@@ -66,8 +66,3 @@ npm install
 
 ## install toast notification in vue.js
 npm install vue-toast-notification
-
-## Mint-UI Use mint ui to develop interfaces for mobile apps with special components
-
-## using vuetify
-
