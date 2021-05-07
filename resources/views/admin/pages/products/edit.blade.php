@@ -215,7 +215,7 @@
                                             @else
                                                 <p class="text-center text-danger">This product has not added specific attributes</p>
                                             @endif
-                                            <form id="form_add_image_product" action="{{ url('/admin/product/color/' . $product->id . '/add') }}" method="post" enctype="multipart/form-data">
+                                            <form id="form_add_color_product" action="{{ url('/admin/product/color/' . $product->id . '/add') }}" method="post" enctype="multipart/form-data">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <tr>
                                                     <td><input type="color" name="color" class="form-control"></td>
@@ -271,7 +271,7 @@
                                             @else
                                                 <p class="text-center text-danger">This product has not added specific attributes</p>
                                             @endif
-                                            <form id="form_add_image_product" action="{{ url('/admin/product/size/' . $product->id . '/add') }}" method="post" enctype="multipart/form-data">
+                                            <form id="form_add_size_product" action="{{ url('/admin/product/size/' . $product->id . '/add') }}" method="post" enctype="multipart/form-data">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <tr>
                                                     <td><input type="text" name="size" class="form-control" placeholder="Size name"></td>
@@ -331,7 +331,7 @@
                                     @else
                                         <p class="text-center text-danger">This product has not added specific attributes</p>
                                     @endif
-                                    <form id="form_add_image_product" action="{{ url('/admin/product/attribute/' . $product->id . '/add') }}" method="post" enctype="multipart/form-data">
+                                    <form id="form_add_attribute_product" action="{{ url('/admin/product/attribute/' . $product->id . '/add') }}" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <tr>
                                             <td><input type="text" name="attribute" class="form-control" placeholder="Attribute name"></td>
