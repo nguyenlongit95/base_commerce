@@ -65,7 +65,7 @@ class CartEloquentRepository extends EloquentRepository implements CartRepositor
     /**
      * Function replace state of cart
      *
-     * @param object $cart 1: Đơn hàng đang xử lý 2: đơn hàng đã huỷ
+     * @param object $cart 1: Đơn hàng đang xử lý 2: đơn hàng đã huỷ 0: đơn hàng đã giao
      * @return string
      */
     public function replaceState($cart)
