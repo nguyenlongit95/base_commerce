@@ -157,4 +157,14 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function 
         Route::get('/', [UserController::class, 'listCustomer']);
         Route::get('/{id}/show', [UserController::class, 'show']);
     });
+
+    Route::group(['prefix' => 'sliders'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\SliderController::class, 'index']);
+        Route::get('/index', [\App\Http\Controllers\Admin\SliderController::class, 'index']);
+        Route::get('/add', [\App\Http\Controllers\Admin\SliderController::class, 'create']);
+        Route::post('/store', [\App\Http\Controllers\Admin\SliderController::class, 'store']);
+        Route::get('{id}/edit', [\App\Http\Controllers\Admin\SliderController::class, 'edit']);
+        Route::post('{id}/update', [\App\Http\Controllers\Admin\SliderController::class, 'update']);
+        Route::get('{id}/delete', [\App\Http\Controllers\Admin\SliderController::class, 'destroy']);
+    });
 });

@@ -80,4 +80,24 @@ class Validation
             'sort.numeric' => config('langEN.admin.attribute.sort_numeric'),
         ]);
     }
+
+    public static function validationSlider($request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'slogan' => 'required|max:255',
+            'info' => 'required',
+            'status' => 'required',
+            'sort' => 'required|numeric'
+        ], [
+            'name.required' => config('langEN.admin.sliders.name_required'),
+            'name.max' => config('langEN.admin.sliders.name_max'),
+            'slogan.required' => config('langEN.admin.sliders.slogan_required'),
+            'slogan.max' => config('langEN.admin.sliders.slogan_max'),
+            'info.required' => config('langEN.admin.sliders.info_required'),
+            'status.required' => config('langEN.admin.sliders.status_required'),
+            'sort.required' => config('langEN.admin.sliders.sort_required'),
+            'sort.numeric' => config('langEN.admin.sliders.sort_numeric'),
+        ]);
+    }
 }

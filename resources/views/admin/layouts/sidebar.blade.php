@@ -100,6 +100,12 @@
                             <p>Menus</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('admin/sliders/index') }}" class="nav-link">
+                            <i class="fas fa-images"></i>
+                            <p>Sliders</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

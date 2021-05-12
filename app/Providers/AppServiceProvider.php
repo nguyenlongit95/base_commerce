@@ -19,6 +19,8 @@ use App\Repositories\ProductTags\ProductTagsEloquentRepository;
 use App\Repositories\ProductTags\ProductTagsRepositoryInterface;
 use App\Repositories\Ratting\RattingEloquentRepository;
 use App\Repositories\Ratting\RattingRepositoryInterface;
+use App\Repositories\Slider\SliderEloquentRepository;
+use App\Repositories\Slider\SliderRepositoryInterface;
 use App\Repositories\Tags\TagsEloquentRepository;
 use App\Repositories\Tags\TagsRepositoryInterface;
 use App\Repositories\Wishlist\WishListEloquentRepository;
@@ -89,6 +91,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             CartDetailRepositoryInterface::class,
             CartDetailEloquentRepository::class
+        );
+        $this->app->bind(
+            SliderRepositoryInterface::class,
+            SliderEloquentRepository::class
         );
 
         $this->app->bind(
