@@ -55,6 +55,17 @@ return [
             'delete_success' => 'Delete attribute success.',
             'delete_failed' => 'Delete attribute failed.',
         ],
+        'sliders' => [
+            'name_required' => 'Please enter name of slider',
+            'name_max' => 'Name has max 255 char',
+            'slogan_required' => 'Please enter slogan of slider',
+            'slogan_max' => 'Slogan max 255 char',
+            'info_required' => 'Please enter info of slogan',
+            'image_required' => 'Please chose an image of slider',
+            'status_required' => 'Please select status of slider',
+            'sort_required' => 'Please enter sort of slider',
+            'sort_numeric' => 'Index sort of slider has numeric',
+        ],
     ],
 
     // front_end page

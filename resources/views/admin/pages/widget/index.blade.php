@@ -20,10 +20,9 @@
         <section class="content">
             @if(!empty($widgets))
                 @foreach($widgets as $widget)
-                    <?php $_arrTemp = rand(0,2); ?>
                     <!-- Began box card -->
                     <div class="col-md-3 float-left">
-                        <div class="card @if($_arrTemp == 0) card-primary @endif @if($_arrTemp == 1) card-success @endif @if($_arrTemp == 2) card-danger @endif">
+                        <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">{{ $widget->key }}</h3>
                                 <div class="card-tools">
@@ -44,18 +43,8 @@
                                         <label for="exampleInputEmail1">Value <span class="icon-required">*</span></label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" name="value" value="{{ $widget->value }}">
                                     </div>
-                                    @if($_arrTemp == 0)
-                                        <a class="float-right btn btn-primary" href="{{ url('/admin/widgets/'.$widget->id.'/delete') }}">Delete </a>
-                                        <input type="submit" value="Update" class="float-right btn btn-primary margin-right-5">
-                                    @endif
-                                    @if($_arrTemp == 1)
-                                        <a class="float-right btn btn-success" href="{{ url('/admin/widgets/'.$widget->id.'/delete') }}">Delete </a>
-                                        <input type="submit" value="Update" class="float-right btn btn-success margin-right-5">
-                                    @endif
-                                    @if($_arrTemp == 2)
-                                        <a class="float-right btn btn-danger" href="{{ url('/admin/widgets/'.$widget->id.'/delete') }}">Delete </a>
-                                        <input type="submit" value="Update" class="float-right btn btn-danger margin-right-5">
-                                    @endif
+                                    <a class="float-right btn btn-danger" href="{{ url('/admin/widgets/'.$widget->id.'/delete') }}">Delete </a>
+                                    <input type="submit" value="Update" class="float-right btn btn-danger margin-right-5">
                                 </form>
                             </div>
                             <!-- /.card-body -->
