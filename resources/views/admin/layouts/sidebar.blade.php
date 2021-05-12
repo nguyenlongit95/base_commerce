@@ -33,31 +33,31 @@
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{ url('/admin/category/') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="far fa-file nav-icon"></i>
                             <p>Categories</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('/admin/product/') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="fa fa-boxes nav-icon"></i>
                             <p>Products</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('/admin/tags/') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="fa fa-link nav-icon"></i>
                             <p>Tags</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('/admin/cart') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="fa fa-cart-plus nav-icon"></i>
                             <p>Cart - Cart detail</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('/admin/customer/') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="fa fa-user-circle nav-icon"></i>
                             <p>Customer</p>
                         </a>
                     </li>
