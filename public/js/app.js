@@ -1862,7 +1862,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use((vue_toast_notification__WEBPACK_IM
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      txt: 'Base data ware house'
+      txt: 'Base e-commerce project'
     };
   },
   created: function created() {

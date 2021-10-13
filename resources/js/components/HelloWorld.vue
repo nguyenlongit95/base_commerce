@@ -12,15 +12,18 @@
     Vue.use(VueToast);
 
     export default {
+        // Define variable
         data() {
             return {
-                txt: 'Base data ware house'
+                txt: 'Base e-commerce project'
             }
         },
+        // Init function
         created: function()
         {
             this.openToast('Base e-commerce', 'success', 2000);
         },
+        // Define all function here
         methods: {
             openToast (message, type, duration, dismissible) {
                 Vue.$toast.open({
@@ -29,12 +32,22 @@
                     duration: duration,
                     dismissible: dismissible,
                     position: 'top-right'
-                })
+                });
             },
+        },
+        // Function mounted
+        mounted() {
+            console.log("Example component mounted");
+        },
+        // Define compute here
+        computed() {
+
         }
     }
 </script>
 
 <style scoped>
-
+    /**
+    * Scope local CSS
+    */
 </style>

@@ -11,15 +11,11 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping data for table base_ecommerce.cart: 1 rows
-DELETE FROM `cart`;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
 INSERT INTO `cart` (`id`, `code`, `qa_code`, `user_id`, `amount`, `status`, `state`, `address`, `delivery_date`, `created_at`, `updated_at`) VALUES
 	(1, 'AAAABBBBSDJWDBUIASHDLBSB2132432', 'qrcode.png', 2, 56000, 1, 1, 'Ha Noi sad', NULL, '2021-04-14 09:44:54', '2021-04-14 04:33:37');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
--- Dumping data for table base_ecommerce.cart_detail: 8 rows
-DELETE FROM `cart_detail`;
 /*!40000 ALTER TABLE `cart_detail` DISABLE KEYS */;
 INSERT INTO `cart_detail` (`id`, `product_id`, `cart_id`, `qty`, `price`, `created_at`, `updated_at`) VALUES
 	(2, 2, 1, 12, 1000, '2021-04-14 13:56:28', NULL),
