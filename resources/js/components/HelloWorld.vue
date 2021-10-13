@@ -48,6 +48,6 @@
 
 <style scoped>
     /**
-    * Scope local CSS
+    * Scope local CSS the component
     */
 </style>
