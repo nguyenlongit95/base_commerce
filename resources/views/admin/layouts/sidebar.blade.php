@@ -28,6 +28,7 @@
                     <p>
                         System Elements
                         <i class="right fas fa-angle-left"></i>
+                        <span class="badge badge-info right">5</span>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
@@ -78,7 +79,7 @@
                     <p>
                         Settings Options
                         <i class="fas fa-angle-left right"></i>
-                        <span class="badge badge-info right">3</span>
+                        <span class="badge badge-info right">4</span>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
