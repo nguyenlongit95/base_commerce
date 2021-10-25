@@ -18,70 +18,72 @@
         <!-- /.content-header -->
 
         <section class="content">
-            @if(!empty($widgets))
-                @foreach($widgets as $widget)
-                    <!-- Began box card -->
-                    <div class="col-md-3 float-left">
-                        <div class="card card-info">
-                            <div class="card-header">
-                                <h3 class="card-title">{{ $widget->key }}</h3>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
-                                <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body" style="display: block;">
+            <!-- Begin card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Create new Widget</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <td>Key</td>
+                            <td>Value</td>
+                            <td class="text-right">Actions</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <form action="{{ url('/admin/widgets/create') }}" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <tr>
+                                    <td><input type="text" class="form-control" id="exampleInputEmail1" name="key" placeholder="Key"></td>
+                                    <td><input type="text" class="form-control" id="exampleInputEmail1" name="value" placeholder="Value"></td>
+                                    <td><input type="submit" value="Create" class="float-right btn btn-danger margin-right-5"></td>
+                                </tr>
+                            </form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- End card -->
+
+            <!-- Begin card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>List all widget</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Key</td>
+                            <td>Value</td>
+                            <td class="text-right">Actions</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if(!empty($widgets))
+                            @foreach($widgets as $widget)
                                 <form action="{{ url('/admin/widgets/'.$widget->id.'/update') }}" method="POST" enctype="multipart/form-data">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Key <span class="icon-required">*</span></label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" name="key" value="{{ $widget->key }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Value <span class="icon-required">*</span></label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" name="value" value="{{ $widget->value }}">
-                                    </div>
-                                    <a class="float-right btn btn-danger" href="{{ url('/admin/widgets/'.$widget->id.'/delete') }}">Delete </a>
-                                    <input type="submit" value="Update" class="float-right btn btn-danger margin-right-5">
+                                    <tr>
+                                        <td>{{ $widget->id }}</td>
+                                        <td><input type="text" class="form-control" id="exampleInputEmail1" name="key" value="{{ $widget->key }}"></td>
+                                        <td><input type="text" class="form-control" id="exampleInputEmail1" name="value" value="{{ $widget->value }}"></td>
+                                        <td class="text-center">
+                                            <a class="float-right btn btn-danger" href="{{ url('/admin/widgets/'.$widget->id.'/delete') }}">Delete </a>
+                                            <input type="submit" value="Update" class="float-right btn btn-warning margin-right-5">
+                                        </td>
+                                    </tr>
                                 </form>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                    </div> <!-- End box card -->
-                @endforeach
-            @endif
-            <div class="col-md-3 float-left">
-                <div class="card card-primary card-warning">
-                    <div class="card-header">
-                        <h3 class="card-title">Add new Widget</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                        <!-- /.card-tools -->
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body" style="display: block;">
-                        <form action="{{ url('/admin/widgets/create') }}" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Key <span class="icon-required">*</span></label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" name="key" placeholder="key widget">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Value <span class="icon-required">*</span></label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" name="value" placeholder="value widget">
-                            </div>
-                            <input type="submit" value="Add new" class="float-right btn btn-warning">
-                        </form>
-                    </div>
-                    <!-- /.card-body -->
+                            @endforeach
+                        @endif
+                        </tbody>
+                    </table>
                 </div>
-                <!-- /.card -->
-            </div> <!-- End box card -->
+            </div>
+            <!-- End card -->
         </section>
         <!-- /.content -->
     </div>
