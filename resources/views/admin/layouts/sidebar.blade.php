@@ -79,7 +79,7 @@
                     <p>
                         Settings Options
                         <i class="fas fa-angle-left right"></i>
-                        <span class="badge badge-info right">4</span>
+                        <span class="badge badge-info right">3</span>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
@@ -95,12 +95,12 @@
                             <p>Users</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ url('admin/menus/index') }}" class="nav-link">
-                            <i class="fas fa-bars"></i>
-                            <p>Menus</p>
-                        </a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a href="{{ url('admin/menus/index') }}" class="nav-link">--}}
+{{--                            <i class="fas fa-bars"></i>--}}
+{{--                            <p>Menus</p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li class="nav-item">
                         <a href="{{ url('admin/sliders/index') }}" class="nav-link">
                             <i class="fas fa-images"></i>

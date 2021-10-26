@@ -13,7 +13,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 -- Dumping structure for table base_ecommerce.cart
-DROP TABLE IF EXISTS `cart`;
 CREATE TABLE IF NOT EXISTS `cart` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `code` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -33,7 +32,6 @@ DELETE FROM `cart`;
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.cart_detail
-DROP TABLE IF EXISTS `cart_detail`;
 CREATE TABLE IF NOT EXISTS `cart_detail` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -51,7 +49,6 @@ DELETE FROM `cart_detail`;
 /*!40000 ALTER TABLE `cart_detail` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.category
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -59,16 +56,19 @@ CREATE TABLE IF NOT EXISTS `category` (
   `sort` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table base_ecommerce.category: ~0 rows (approximately)
+-- Dumping data for table base_ecommerce.category: ~2 rows (approximately)
 DELETE FROM `category`;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` (`id`, `name`, `description`, `sort`, `created_at`, `updated_at`, `slug`) VALUES
+	(1, 'Category Demo 1', '<p>- The sort item will be the display order of this category on the displayed page.</p>\r\n\r\n<p>- The name field will automatically be translated into the slug field after you finish typing 1 character.</p>', 1, '2021-10-25 10:25:10', '2021-10-25 10:25:10', 'category-demo-1'),
+	(2, 'Category demo 2', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget facilisis est. Morbi vestibulum tellus justo, ac egestas tortor malesuada quis. In vitae turpis porta, volutpat nisi at, convallis diam. Nam imperdiet dui ut tortor lacinia dictum. Mauris iaculis accumsan tincidunt. Aliquam erat volutpat. Maecenas feugiat pulvinar massa, sed ullamcorper odio consectetur non. Suspendisse magna arcu, rhoncus sed velit sed, tempor rhoncus justo. Sed pellentesque quam in purus ultricies, vitae dignissim arcu varius. In massa nisl, feugiat pretium diam a, tincidunt sollicitudin augue. Praesent ornare sem interdum ligula placerat varius. Donec semper feugiat sapien vel pellentesque. Nulla porttitor ante sit amet felis facilisis, in rhoncus eros tempor. Sed hendrerit dictum arcu sed imperdiet. Vivamus dignissim nibh vel molestie venenatis.</p>', 1, '2021-10-25 10:25:37', '2021-10-25 10:25:37', 'category-demo-2');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.failed_jobs
-DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -85,7 +85,6 @@ DELETE FROM `failed_jobs`;
 /*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.migrations
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -117,7 +116,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.password_resets
-DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -131,7 +129,6 @@ DELETE FROM `password_resets`;
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.paygates
-DROP TABLE IF EXISTS `paygates`;
 CREATE TABLE IF NOT EXISTS `paygates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -155,49 +152,69 @@ INSERT INTO `paygates` (`id`, `name`, `code`, `url`, `configs`, `icon`, `created
 /*!40000 ALTER TABLE `paygates` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.products
-DROP TABLE IF EXISTS `products`;
 CREATE TABLE IF NOT EXISTS `products` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `info` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` double(8,2) NOT NULL,
+  `price` float NOT NULL DEFAULT '0',
   `origin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `code` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `qa_code` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qa_code` text COLLATE utf8mb4_unicode_ci,
   `status` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table base_ecommerce.products: ~0 rows (approximately)
+-- Dumping data for table base_ecommerce.products: ~2 rows (approximately)
 DELETE FROM `products`;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` (`id`, `name`, `slug`, `info`, `description`, `price`, `origin`, `code`, `qa_code`, `status`, `qty`, `created_at`, `updated_at`, `category_id`) VALUES
+	(1, 'Product demo 1', 'product-demo-1', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget facilisis est. Morbi vestibulum tellus justo, ac egestas tortor malesuada quis. In vitae turpis porta, volutpat nisi at, convallis diam. Nam imperdiet dui ut tortor lacinia dictum. Mauris iaculis accumsan tincidunt. Aliquam erat volutpat. Maecenas feugiat pulvinar massa, sed ullamcorper odio consectetur non. Suspendisse magna arcu, rhoncus sed velit sed, tempor rhoncus justo.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget facilisis est. Morbi vestibulum tellus justo, ac egestas tortor malesuada quis. In vitae turpis porta, volutpat nisi at, convallis diam. Nam imperdiet dui ut tortor lacinia dictum. Mauris iaculis accumsan tincidunt. Aliquam erat volutpat. Maecenas feugiat pulvinar massa, sed ullamcorper odio consectetur non. Suspendisse magna arcu, rhoncus sed velit sed, tempor rhoncus justo. Sed pellentesque quam in purus ultricies, vitae dignissim arcu varius. In massa nisl, feugiat pretium diam a, tincidunt sollicitudin augue. Praesent ornare sem interdum ligula placerat varius. Donec semper feugiat sapien vel pellentesque. Nulla porttitor ante sit amet felis facilisis, in rhoncus eros tempor. Sed hendrerit dictum arcu sed imperdiet. Vivamus dignissim nibh vel molestie venenatis.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget facilisis est. Morbi vestibulum tellus justo, ac egestas tortor malesuada quis. In vitae turpis porta, volutpat nisi at, convallis diam. Nam imperdiet dui ut tortor lacinia dictum. Mauris iaculis accumsan tincidunt. Aliquam erat volutpat. Maecenas feugiat pulvinar massa, sed ullamcorper odio consectetur non. Suspendisse magna arcu, rhoncus sed velit sed, tempor rhoncus justo. Sed pellentesque quam in purus ultricies, vitae dignissim arcu varius. In massa nisl, feugiat pretium diam a, tincidunt sollicitudin augue. Praesent ornare sem interdum ligula placerat varius. Donec semper feugiat sapien vel pellentesque. Nulla porttitor ante sit amet felis facilisis, in rhoncus eros tempor. Sed hendrerit dictum arcu sed imperdiet. Vivamus dignissim nibh vel molestie venenatis.</p>', 4500000, 'Viet Nam', '3843bf342d07cf68be9587a8698fc795', NULL, 1, 1000, '2021-10-25 10:28:23', '2021-10-25 10:28:23', 1),
+	(2, 'Product demo 1', 'product-demo-1', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget facilisis est. Morbi vestibulum tellus justo, ac egestas tortor malesuada quis. In vitae turpis porta, volutpat nisi at, convallis diam. Nam imperdiet dui ut tortor lacinia dictum. Mauris iaculis accumsan tincidunt. Aliquam erat volutpat. Maecenas feugiat pulvinar massa, sed ullamcorper odio consectetur non. Suspendisse magna arcu, rhoncus sed velit sed, tempor rhoncus justo.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget facilisis est. Morbi vestibulum tellus justo, ac egestas tortor malesuada quis. In vitae turpis porta, volutpat nisi at, convallis diam. Nam imperdiet dui ut tortor lacinia dictum. Mauris iaculis accumsan tincidunt. Aliquam erat volutpat. Maecenas feugiat pulvinar massa, sed ullamcorper odio consectetur non. Suspendisse magna arcu, rhoncus sed velit sed, tempor rhoncus justo. Sed pellentesque quam in purus ultricies, vitae dignissim arcu varius. In massa nisl, feugiat pretium diam a, tincidunt sollicitudin augue. Praesent ornare sem interdum ligula placerat varius. Donec semper feugiat sapien vel pellentesque. Nulla porttitor ante sit amet felis facilisis, in rhoncus eros tempor. Sed hendrerit dictum arcu sed imperdiet. Vivamus dignissim nibh vel molestie venenatis.</p>\r\n\r\n<p><img alt="" src="http://base_ecommerce.test/plugins/ckfinder/userfiles/images/ava.jpg" style="height:130px; width:130px" /></p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget facilisis est. Morbi vestibulum tellus justo, ac egestas tortor malesuada quis. In vitae turpis porta, volutpat nisi at, convallis diam. Nam imperdiet dui ut tortor lacinia dictum. Mauris iaculis accumsan tincidunt. Aliquam erat volutpat. Maecenas feugiat pulvinar massa, sed ullamcorper odio consectetur non. Suspendisse magna arcu, rhoncus sed velit sed, tempor rhoncus justo. Sed pellentesque quam in purus ultricies, vitae dignissim arcu varius. In massa nisl, feugiat pretium diam a, tincidunt sollicitudin augue. Praesent ornare sem interdum ligula placerat varius. Donec semper feugiat sapien vel pellentesque. Nulla porttitor ante sit amet felis facilisis, in rhoncus eros tempor. Sed hendrerit dictum arcu sed imperdiet. Vivamus dignissim nibh vel molestie venenatis.</p>', 4500000, 'Viet Nam', '3843bf342d07cf68be9587a8698fc795', NULL, 1, 1000, '2021-10-25 10:29:32', '2021-10-26 02:44:30', 1);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.product_attitude
-DROP TABLE IF EXISTS `product_attitude`;
 CREATE TABLE IF NOT EXISTS `product_attitude` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
-  `attitude` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attribute` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `sort` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table base_ecommerce.product_attitude: ~0 rows (approximately)
 DELETE FROM `product_attitude`;
 /*!40000 ALTER TABLE `product_attitude` DISABLE KEYS */;
+INSERT INTO `product_attitude` (`id`, `product_id`, `attribute`, `value`, `sort`, `created_at`, `updated_at`) VALUES
+	(1, 2, 'Demo', 'Cotton', 1, '2021-10-26 02:10:42', '2021-10-26 02:10:42');
 /*!40000 ALTER TABLE `product_attitude` ENABLE KEYS */;
 
+-- Dumping structure for table base_ecommerce.product_color
+CREATE TABLE IF NOT EXISTS `product_color` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `color` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table base_ecommerce.product_color: ~1 rows (approximately)
+DELETE FROM `product_color`;
+/*!40000 ALTER TABLE `product_color` DISABLE KEYS */;
+INSERT INTO `product_color` (`id`, `product_id`, `color`, `created_at`, `updated_at`) VALUES
+	(1, 2, '#000000', NULL, NULL);
+/*!40000 ALTER TABLE `product_color` ENABLE KEYS */;
+
 -- Dumping structure for table base_ecommerce.product_img
-DROP TABLE IF EXISTS `product_img`;
 CREATE TABLE IF NOT EXISTS `product_img` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -206,15 +223,33 @@ CREATE TABLE IF NOT EXISTS `product_img` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table base_ecommerce.product_img: ~0 rows (approximately)
 DELETE FROM `product_img`;
 /*!40000 ALTER TABLE `product_img` DISABLE KEYS */;
+INSERT INTO `product_img` (`id`, `product_id`, `image`, `sort`, `created_at`, `updated_at`) VALUES
+	(2, 2, '/image/products/image_2__DSC4823.png', 0, '2021-10-26 02:45:25', '2021-10-26 02:45:25');
 /*!40000 ALTER TABLE `product_img` ENABLE KEYS */;
 
+-- Dumping structure for table base_ecommerce.product_size
+CREATE TABLE IF NOT EXISTS `product_size` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `size` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table base_ecommerce.product_size: ~1 rows (approximately)
+DELETE FROM `product_size`;
+/*!40000 ALTER TABLE `product_size` DISABLE KEYS */;
+INSERT INTO `product_size` (`id`, `product_id`, `size`, `created_at`, `updated_at`) VALUES
+	(1, 2, 'XL', NULL, NULL);
+/*!40000 ALTER TABLE `product_size` ENABLE KEYS */;
+
 -- Dumping structure for table base_ecommerce.product_tags
-DROP TABLE IF EXISTS `product_tags`;
 CREATE TABLE IF NOT EXISTS `product_tags` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -222,15 +257,16 @@ CREATE TABLE IF NOT EXISTS `product_tags` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table base_ecommerce.product_tags: ~0 rows (approximately)
 DELETE FROM `product_tags`;
 /*!40000 ALTER TABLE `product_tags` DISABLE KEYS */;
+INSERT INTO `product_tags` (`id`, `product_id`, `tags_id`, `created_at`, `updated_at`) VALUES
+	(1, 2, 1, NULL, NULL);
 /*!40000 ALTER TABLE `product_tags` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.rattings
-DROP TABLE IF EXISTS `rattings`;
 CREATE TABLE IF NOT EXISTS `rattings` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -247,7 +283,6 @@ DELETE FROM `rattings`;
 /*!40000 ALTER TABLE `rattings` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.settings
-DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(250) DEFAULT NULL,
@@ -307,7 +342,6 @@ INSERT INTO `settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.sliders
-DROP TABLE IF EXISTS `sliders`;
 CREATE TABLE IF NOT EXISTS `sliders` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -327,7 +361,6 @@ DELETE FROM `sliders`;
 /*!40000 ALTER TABLE `sliders` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.tags
-DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `tags` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -336,15 +369,16 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table base_ecommerce.tags: ~0 rows (approximately)
 DELETE FROM `tags`;
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
+INSERT INTO `tags` (`id`, `tags`, `slug`, `sort`, `created_at`, `updated_at`) VALUES
+	(1, 'Demo tags 1', 'demo-tags-1', 1, '2021-10-26 03:07:22', '2021-10-26 03:07:22');
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.users
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -367,7 +401,6 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table base_ecommerce.wishlist
-DROP TABLE IF EXISTS `wishlist`;
 CREATE TABLE IF NOT EXISTS `wishlist` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,

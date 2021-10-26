@@ -105,10 +105,10 @@
                                 <td>{{ $value->id }}</td>
                                 <td>{{ $value->name }}</td>
                                 <td>{{ $value->category->name }}</td>
-                                <td>{{ $value->price }}</td>
+                                <td>{{ number_format($value->price, 0) }}</td>
                                 <td>{{ $value->code }}</td>
                                 <td>{{ $value->status }}</td>
-                                <td>{{ $value->qty }}</td>
+                                <td>{{ number_format($value->qty, 0) }}</td>
                                 <td>
                                     <a href="{{ url('/admin/product/'.$value->id.'/edit') }}"><i class="fas fa-edit"></i></a>
                                     |

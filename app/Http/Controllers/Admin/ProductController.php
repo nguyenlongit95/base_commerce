@@ -84,21 +84,23 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('status', config('langEN.create.failed'));
         }
-
-        $assignTags = $this->productTagsRepository->assignProductTags($product, $param['tags']);
-        if ($assignTags === false) {
-            return redirect('/admin/product/')->with('status', config('langEN.tags.assign_failed'));
+        if (isset($param['tags'])) {
+            $assignTags = $this->productTagsRepository->assignProductTags($product, $param['tags']);
+            if ($assignTags === false) {
+                return redirect('/admin/product/')->with('status', config('langEN.tags.assign_failed'));
+            }
         }
-
+        // Response redirect
         return redirect('/admin/product/')->with('status', config('langEN.create.success'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
-     * @param  int $id of product
+     * @param \App\Models\Product $product
+     * @param int $id of product
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function show(Product $product, $id)
     {
@@ -110,7 +112,7 @@ class ProductController extends Controller
         $qrCode = $this->productRepository->renderQACode($param);
         $tags = app()->make(TagsRepositoryInterface::class)->listAll();
         $rattings = $this->productRepository->getRattingOfProduct($product);
-
+        // Response view blade
         return view('admin.pages.products.show', compact('product', 'qrCode', 'tags', 'rattings'));
     }
 
@@ -221,10 +223,12 @@ class ProductController extends Controller
         }
         // remove all tags of product
         $this->productTagsRepository->removeProductTags($product);
-        // Assign again tags for product
-        $assignTags = $this->productTagsRepository->assignProductTags($product, $param['tags']);
-        if ($assignTags === false) {
-            return redirect('/admin/product/' . $id . '/edit')->with('status', config('langEN.tags.assign_failed'));
+        if (isset($param['tags'])) {
+            // Assign again tags for product
+            $assignTags = $this->productTagsRepository->assignProductTags($product, $param['tags']);
+            if ($assignTags === false) {
+                return redirect('/admin/product/' . $id . '/edit')->with('status', config('langEN.tags.assign_failed'));
+            }
         }
 
         return redirect('/admin/product/' . $id . '/edit')->with('status', config('langEN.update.success'));

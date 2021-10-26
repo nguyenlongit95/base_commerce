@@ -133,6 +133,7 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <p>Here you can select multiple affiliate tags <span class="text-danger">*</span></p>
                             <div class="form-group">
                                 <?php $i = 1; ?>
                                 @if(!empty($tags))
