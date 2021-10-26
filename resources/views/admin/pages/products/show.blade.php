@@ -47,12 +47,12 @@
                 </div>
 
                 <div class="col-12 col-sm-6">
-                    <h3 class="my-3">{{ $product->name }} Review</h3>
+                    <h3 class="my-3">{{ $product->name }} preview</h3>
                     {!! $product->info !!}
                     <hr>
                     <h4>Table special attribute</h4>
                     <table class="table table-bordered table-hover">
-                        <thead>
+                        <thead class="background-blue color-white">
                             <tr>
                                 <td>Attribute name</td>
                                 <td>Value attribute</td>
