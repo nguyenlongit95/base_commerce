@@ -72,6 +72,17 @@
                                 <label for="name">Sort <span class="icon-required">*</span></label>
                                 <input type="number" class="form-control" id="sort" name="sort" value="{{ $category->sort }}">
                             </div>
+                            <div class="form-group">
+                                <label for="parent_id">Parent category <span class="icon-required">*</span></label>
+                                <select name="parent_id" class="form-control" id="parent_id">
+                                    <option value="0">Master category</option>
+                                    @if(!empty($masterCategories))
+                                        @foreach ($masterCategories as $masterCategory)
+                                            <option @if($category->parent_id == $masterCategory->id) selected @endif value="{{ $masterCategory->id }}">{{ $masterCategory->name }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">

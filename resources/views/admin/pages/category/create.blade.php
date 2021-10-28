@@ -72,12 +72,24 @@
                                 <label for="name">Sort <span class="icon-required">*</span></label>
                                 <input type="number" class="form-control" id="sort" name="sort" value="1">
                             </div>
+                            <div class="form-group">
+                                <label for="parent_id">Parent category <span class="icon-required">*</span></label>
+                                <select name="parent_id" class="form-control" id="parent_id">
+                                    <option value="0">Master category</option>
+                                    @if(!empty($masterCategories))
+                                        @foreach ($masterCategories as $masterCategory)
+                                        <option value="{{ $masterCategory->id }}">{{ $masterCategory->name }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <div class="card-footer">
                                 <p>- The sort item will be the display order of this category on the displayed page.</p>
                                 <p>- The name field will automatically be translated into the slug field after you finish typing 1 character.</p>
+                                <p>- "Master category" will be the root category of the system.</p>
                                 <button type="submit" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Create</button>
                             </div>
                         </div>

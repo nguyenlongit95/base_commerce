@@ -9,4 +9,9 @@ interface CategoryRepositoryInterface
      * @return mixed
      */
     public function checkDataDepend($category);
+
+    /**
+     * @return mixed
+     */
+    public function getMasterCategories();
 }

@@ -10,8 +10,15 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    /**
+     * @var CategoryRepositoryInterface
+     */
     private $categoryRepository;
 
+    /**
+     * CategoryController constructor.
+     * @param CategoryRepositoryInterface $categoryRepository
+     */
     public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
@@ -26,7 +33,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $categories = $this->categoryRepository->getAll(config('const.paginate'), 'DESC');
-
+        // Response view data
         return view('admin.pages.category.index', compact('categories'));
     }
 
@@ -37,7 +44,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.category.create');
+        $masterCategories = $this->categoryRepository->getMasterCategories();
+        return view('admin.pages.category.create', compact('masterCategories'));
     }
 
     /**
@@ -54,7 +62,7 @@ class CategoryController extends Controller
         if (!$create) {
             return redirect()->back('status', config('langEN.admin.create.failed'));
         }
-
+        // Return redirect category
         return redirect('/admin/category/')->with('status', config('langEN.admin.create.success'));
     }
 
@@ -68,11 +76,12 @@ class CategoryController extends Controller
     public function edit(Request $request, $id)
     {
         $category = $this->categoryRepository->find($id);
+        $masterCategories = $this->categoryRepository->getMasterCategories();
         if (!$category) {
             return redirect('/admin/category/')->with('status', config('langEN.admin.find.failed'));
         }
-
-        return view('admin.pages.category.edit', compact('category'));
+        // Response view data
+        return view('admin.pages.category.edit', compact('category', 'masterCategories'));
     }
 
     /**
@@ -84,17 +93,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Validation request param
         Validation::validationCategory($request);
         $category = $this->categoryRepository->find($id);
         if (!$category) {
             return redirect('/admin/category/')->with('status', config('langEN.admin.find.failed'));
         }
+        // Init param end update data to database
         $param = $request->all();
         $update = $this->categoryRepository->update($param, $category->id);
         if (!$update) {
             return redirect('/admin/category/' . $id . '/edit')->with('status', config('langEN.admin.update.failed'));
         }
-
+        // Response redirect
         return redirect('/admin/category/' . $id . '/edit')->with('status', config('langEN.admin.update.success'));
     }
 
@@ -107,19 +118,22 @@ class CategoryController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        // Find the category
         $category = $this->categoryRepository->find($id);
         if (!$category) {
             return redirect('/admin/category/')->with('status', config('langEN.admin.find.failed'));
         }
+        // system Check dependent data
         $checkData = $this->categoryRepository->checkDataDepend($category);
         if ($checkData > 0) {
             return redirect('/admin/category/')->with('status', config('langEN.admin.delete.dependent'));
         }
+        // Delete the record
         $delete = $this->categoryRepository->delete($category->id);
         if (!$delete) {
             return redirect('/admin/category/')->with('status', config('langEN.admin.delete.failed'));
         }
-
+        // Response redirect
         return redirect('/admin/category/')->with('status', config('langEN.admin.delete.success'));
     }
 }

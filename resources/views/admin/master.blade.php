@@ -59,6 +59,14 @@
         <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
+    <div class="content">
+        <div class="title m-b-md">
+            Model E-Commerce
+        </div>
+        <div id="app">
+            <hello-world></hello-world>
+        </div>
+    </div>
 </div>
 <!-- ./wrapper -->
 
@@ -102,6 +110,8 @@
 <script src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
 
 @yield('custom-js')
+
+<script src="{{ asset('/js/app.js') }}"></script>
 
 </body>
 </html>

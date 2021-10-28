@@ -26,4 +26,14 @@ class CategoryEloquentRepository extends EloquentRepository implements CategoryR
     {
         return Product::where('category_id', $category->id)->count();
     }
+
+    /**
+     * Sql function list all master categories
+     *
+     * @return mixed
+     */
+    public function getMasterCategories()
+    {
+        return Category::where('parent_id', 0)->get();
+    }
 }
