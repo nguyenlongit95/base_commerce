@@ -175,7 +175,7 @@
                 </div>
                 </form>
 
-                <div class="col-3 float-left" id="section-attibute-product">
+                <div class="col-2 float-left" id="section-attibute-product">
                     <div class="card card-secondary">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -235,7 +235,7 @@
                     </div>
                 </div>
 
-                <div class="col-3 float-left" id="section-attibute-product">
+                <div class="col-2 float-left" id="section-attibute-product">
                     <div class="card card-secondary">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -291,67 +291,67 @@
                     </div>
                 </div>
 
-                <div class="col-3 float-left" id="section-attibute-product">
-            <div class="card card-secondary">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <label for="tags">Product attibute list</label>
-                    </h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fas fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-12 text-center" id="attribute_preview">
-                                <table class="table table-hover table-bordered text-center">
-                                    <thead class="background-blue color-white">
-                                    <tr>
-                                        <td>Attribute</td>
-                                        <td>Value</td>
-                                        <td>Sort</td>
-                                        <td>Action</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(!empty($attributes))
-                                        @foreach($attributes as $value)
-                                            <tr>
-                                                <td>{{ $value->attribute }}</td>
-                                                <td>{{ $value->value }}</td>
-                                                <td>{{ $value->sort }}</td>
-                                                <td>
-                                                    <a href="{{ url('/admin/product/attribute/' . $value->id . '/delete') }}"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        <p class="text-center text-danger">This product has not added specific attributes</p>
-                                    @endif
-                                    <form id="form_add_attribute_product" action="{{ url('/admin/product/attribute/' . $product->id . '/add') }}" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <tr>
-                                            <td><input type="text" name="attribute" class="form-control" placeholder="Attribute name"></td>
-                                            <td><input type="text" name="value" class="form-control" placeholder="Valute attribute"></td>
-                                            <td><input type="number" name="sort" class="form-control" placeholder="1"></td>
-                                            <td>
-                                                <button class="btn-none-button"><i class="fas fa-plus-circle margin-top-10"></i></button>
-                                            </td>
-                                        </tr>
-                                    </form>
-                                    </tbody>
-                                </table>
+                <div class="col-5 float-left" id="section-attibute-product">
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <label for="tags">Product attibute list</label>
+                            </h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                    <i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                                    <i class="fas fa-times"></i></button>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-12 text-center" id="attribute_preview">
+                                        <table class="table table-hover table-bordered text-center">
+                                            <thead class="background-blue color-white">
+                                            <tr>
+                                                <td>Attribute</td>
+                                                <td>Value</td>
+                                                <td>Sort</td>
+                                                <td>Action</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @if(!empty($attributes))
+                                                @foreach($attributes as $value)
+                                                    <tr>
+                                                        <td>{{ $value->attribute }}</td>
+                                                        <td>{{ $value->value }}</td>
+                                                        <td>{{ $value->sort }}</td>
+                                                        <td>
+                                                            <a href="{{ url('/admin/product/attribute/' . $value->id . '/delete') }}"><i class="fas fa-trash"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <p class="text-center text-danger">This product has not added specific attributes</p>
+                                            @endif
+                                            <form id="form_add_attribute_product" action="{{ url('/admin/product/attribute/' . $product->id . '/add') }}" method="post" enctype="multipart/form-data">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <tr>
+                                                    <td><input type="text" name="attribute" class="form-control" placeholder="Attribute name"></td>
+                                                    <td><input type="text" name="value" class="form-control" placeholder="Valute attribute"></td>
+                                                    <td><input type="number" name="sort" class="form-control" placeholder="1"></td>
+                                                    <td>
+                                                        <button class="btn-none-button"><i class="fas fa-plus-circle margin-top-10"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </form>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-footer-->
                     </div>
                 </div>
-                <!-- /.card-footer-->
-            </div>
-        </div>
 
                 <div class="col-12 float-left" id="section-image-product">
                     <div class="card card-purple">
