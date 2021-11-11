@@ -77,19 +77,24 @@
                 console.log(testAPI);
             }
         },
-        // Function mounted
+        // Function mounted:
         mounted() {
             console.log("Example component mounted");
         },
-        // Define compute here
+        // Define compute here:  When the component is initialized, the computed will be transformed like a property
         // computed() {
         //
         // }
+
+        // Define watch here: When the value of a variable changes, the function in watch will be executed
+        watch() {
+
+        }
     }
 </script>
 
 <style scoped>
     /**
-    * Scope local CSS the component
+    * Scope local CSS for component
     */
 </style>
