@@ -15,6 +15,7 @@ import Vue from 'vue';
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 Vue.component('hello-world', require('./components/HelloWorld.vue').default);
+Vue.component('statistic-calendar', require('./components/partials/StatisticCalendar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

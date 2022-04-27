@@ -6,7 +6,10 @@ use App\Factory\NganLuong\NganLuong;
 use App\Factory\Paygates\VNPAY\VNPAY;
 use App\Factory\Paygates\Paypal\paypal_entry;
 use App\Http\Controllers\Controller;
+use App\Support\ResponseHelper;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashBoardController extends Controller
 {
@@ -81,4 +84,26 @@ class DashBoardController extends Controller
         $paypal = new paypal_entry();
         dd($paypal->directPayment($param));
     }
+
+    /**
+     * Function list product on month and cal qty the products
+     *
+     * @param Request $request
+     * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function productSales(Request $request)
+    {
+        $param = $request->all();
+        $carbon = Carbon::create($param['year'], $param['month'], $param['day']);
+        $listProducts = DB::table('cart_detail')->join('products', 'cart_detail.product_id', '=','products.id')
+            ->select('products.id', 'products.name')
+            ->selectRaw('sum(cart_detail.qty) as total_qty')
+            ->groupBy('cart_detail.product_id')
+            ->whereDate('cart_detail.created_at', $carbon)
+            ->get();
+        // Response list product
+        return app()->make(ResponseHelper::class)->success($listProducts);
+    }
 }
+

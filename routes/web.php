@@ -168,3 +168,7 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admin'], function 
         Route::get('{id}/delete', [\App\Http\Controllers\Admin\SliderController::class, 'destroy']);
     });
 });
+
+Route::group(['prefix' => 'api-internal'], function () {
+    Route::get('/product-sales', [DashBoardController::class, 'productSales']);
+});
